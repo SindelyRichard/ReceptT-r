@@ -1,19 +1,3 @@
-# recept_tar
+# ReceptTár
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+ReceptTár egy weboldal ami vue.js-el készült. Különböző receptek közül lehet válogatni. A weboldalon személyre lehet szabni a recepteket személyek száma alapján, így biztosan nem marad maradék!
