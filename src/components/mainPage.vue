@@ -1,10 +1,36 @@
 <template>
   <div class="app">
-    <div class="welcome">Üdvözöljük a RecepTár oldalon!</div>
-    <div class="trapezoid">
-      <img :src="currentImage" alt="Dynamic image" class="image" />
+    <div class="container">
+      <div class="welcome">
+        Üdvözöljük a RecepTár oldalon!
+      </div>
+      <div class="trapezoid">
+        <img :src="currentImage" alt="Dynamic image" class="image" />
+      </div>
+      <div class="details">
+        Változatos és különféle receptek csak önnek!
+      </div>
     </div>
-    <div class="details">Változatos és különféle receptek csak önnek!</div>
+    <div class="content">
+      <div class="row">
+      <div class="food_content">
+        <div class="food_pic_container">
+          <img src="../assets/food1.jpg" class="foodsPic">
+        </div>
+        <div @click="handleRecipe('rantotthus')" class="food_description">
+          Rántotthús receptje
+        </div>
+      </div>
+      <div class="food_content">
+        <div class="food_pic_container">
+          <img src="../assets/food1.jpg" class="foodsPic">
+        </div>
+        <div @click="handleRecipe('rantotthus')" class="food_description">
+          Rántotthús receptje
+        </div>
+      </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -34,17 +60,25 @@ export default {
         this.currentIndex = (this.currentIndex + 1) % this.images.length;
       }, 3000);
     },
+    handleRecipe(recipeName) {
+      this.$router.push({ name: 'recipe', params: { name: recipeName } });
+    }
   },
 };
 </script>
 
 
 <style scoped>
-.app {
+.container {
   display: flex;
   justify-content: center;
   background-image: url("../assets/panel.jpeg");
   width: 100vw;
+}
+
+.row{
+  display: flex;
+
 }
 
 .trapezoid {
@@ -64,20 +98,58 @@ export default {
   top: 0;
   left: 0;
 }
-.welcome{
-   position: absolute;
-   left: 10%;
-   top: 13%;
-   color: white;
-   font-family: 'Courier New', Courier, monospace;
-   font-weight: bold;
+
+.welcome {
+  position: absolute;
+  left: 10%;
+  top: 13%;
+  color: white;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
 }
-.details{
+
+.details {
   position: absolute;
   right: 7%;
   top: 13%;
   color: white;
   font-family: 'Courier New', Courier, monospace;
   font-weight: bold;
+}
+
+.food_content {
+  width: 50%;
+  border: 5px solid gray;
+  border-radius: 1%;
+  left: 0;
+  height: 200px;
+  display: flex;
+  cursor: pointer;
+}
+
+.foodsPic {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.food_pic_container {
+  border: 1px solid black;
+  width: 30%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.food_description {
+  display: flex;
+  text-align: center;
+  font-size: xx-large;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  background-image: url("../assets/vagodeszka.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
 }
 </style>

@@ -2,36 +2,51 @@
   <div class="main">
     <nav class="navbar">
       <ul>
-        <li>Home</li>
-        <li>About</li>
-        <li>Contact</li>
+        <li>
+        <router-link to="/" class="nav-link">Home</router-link>
+        </li>
       </ul>
     </nav>
     <div class="welcome">
-      <HelloWorld/>
+      <router-view />
     </div>
   </div>
-  
-  
+
+
 </template>
 
 <script>
-import HelloWorld from './components/mainPage.vue'
+import mainPage from './components/mainPage.vue'
+import recipeDetails from './components/recipeDetails.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
-}
+    mainPage,
+    recipeDetails
+  },
+  data(){
+    return {
+      currentComponent:'mainPage',
+      selectedRecipe: null,
+    };
+  },
+  methods:{
+    showRecipe(recipeName){
+      this.selectedRecipe = recipeName;
+      this.currentComponent = 'recipeDetails'
+    },
+  },
+};
 </script>
 
 <style>
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  }
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -40,6 +55,7 @@ export default {
   color: #2c3e50;
   width: 100vw;
 }
+
 .navbar {
   display: flex;
   justify-content: space-around;
@@ -60,9 +76,13 @@ export default {
   color: white;
   font-size: 18px;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .navbar ul li {
   text-decoration: underline;
+}
+.nav-link:visited{
+  color: white;
 }
 </style>
